@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>HoverEvents Practice</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<style type="text/css">
+	.Changing{
+		background-color: lightyellow;
+	}
+	.Clickcolor{
+		background-color: purple;
+	}
+	.highlight{
+		background:yellow;
+	}
+</style>
+<body>
+
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// 第一种方法 利用两个function（）函数来控制
+			// $('#hover_practice').hover(
+			// 	function(){$(this).css('background-color','green');},
+			// 	function(){$(this).css('background-color','red');}
+			// 	);
+
+			//第二种方法 利用toggleClass()来控制
+			// $('#hover_practice').hover(function(){
+			// 	$(this).toggleClass('Changing');
+			// 	$(this).css('cursor','pointer');
+			// });
+
+			// 第三种方法 用.on('mouseenter mouseleave',function()){}
+			$('#hover_practice').on('mouseenter mouseleave',function(e){
+				$(this).toggleClass('Changing');
+				if(e.type=='mouseenter'){
+					$(this).css('cursor','pointer');
+				}
+			});
+
+			// click事件 第一种方法 .on('click',function)
+			// $('#hover_practice').on('click',function(){
+			// 	$(this).toggleClass('Clickcolor');
+			// });
+
+			// click事件 第二种方法 不用jquery 用js方法
+			// var abc = document.getElementById('hover_practice');
+			// abc.addEventListener('click',function(){
+			// 	$(this).css('background-color','orange');
+			// },false);
+
+			// click事件 用jquery
+			$('#hover_practice').click(function(){
+				$(this).css('background-color','gray');
+			});
+
+			//当点击离开的时候，背景变白色同时加上边框，json格式
+			$('#hover_practice').mouseup(function(){
+				$(this).css({
+					'background-color':'white',
+					'border':'2px solid pink'
+				});
+
+			});
+
+		});
+
+		// 点到哪个输入框哪个输入框就变成黄色
+		function FocusBlur(abc){
+				$(abc).toggleClass('highlight');
+			}
+
+	</script>
+
+	<div id="pra_1">
+		<button type="button" id="hover_practice">Changing Color</button>
+	</div>
+	<hr>
+	<form action="./form_submit.php" method="POST">
+		FIRST NAME : <input onfocus="FocusBlur(this)" onblur="FocusBlur(this)" type="text" name="fname"><br>
+		LAST NAME : <input onfocus="FocusBlur(this)" onblur="FocusBlur(this)" type="text" name="lname"><br>
+		<input type="submit" value="GO">
+	</form>
+	
+		
+
+
+
+
+</body>
+</html>
+
+
